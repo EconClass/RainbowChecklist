@@ -31,13 +31,6 @@ def mark_completed(index):
     mark_item = checklist[index]
     print(str('√') + "{}".format(mark_item))
 
-# Prompt a user input
-def user_input(prompt):
-    # the input function will display a message in the terminal
-    # and wait for user input.
-    user_input = raw_input(prompt)
-    return user_input
-
 # Select functions to run
 def select(function_code):
     # Create item
@@ -63,9 +56,32 @@ def select(function_code):
     else:
         print("Unknown Option")
 
+    return True
+
+# Prompt a user input
+def user_input(prompt):
+    # the input function will display a message in the terminal
+    # and wait for user input.
+    user_input = raw_input(prompt)
+    return user_input
+
 # Test Functions
 def test():
-
+    create("purple sox")
+    create("red cloak")
+    print(read(0))
+    print(read(1))
+    update(0, "purple socks")
+    destroy(1)
+    print(read(0))
+    list_all_items()
+    mark_completed(0)
+    select("C")
+    list_all_items()
+    select("R")
+    select("P")
+    # select("Q")
+    clear_terminal()
 
 # Clear Terminal
 def clear_terminal():
@@ -73,9 +89,9 @@ def clear_terminal():
     os.system("clear")
 
 # Run the test function
-test()
-clear_terminal()
+#test()
 
+# Start Loop
 running = True
 while running:
     selection = user_input(
