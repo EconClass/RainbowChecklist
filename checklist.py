@@ -1,4 +1,5 @@
 # Initial Conditions
+# -*- coding: utf-8 -*-
 checklist = list()
 # checklist.append("Hello")
 # checklist.append("World")
@@ -24,13 +25,35 @@ def destroy(index):
 def list_all_items():
     index = 0
     for list_item in checklist:
-        print(str(index) + list_item)
+        print(str(index) + str(list_item))
         index += 1
 
 # Put a check on completed items in the list
 def mark_completed(index):
     mark_item = checklist[index]
-    # print(str('√') + "{}".format(, mark_item))
+    print(str('√') + "{}".format(mark_item))
+
+# Select functions to run
+def select(function_code):
+    # Create item
+    if function_code == "C":
+        input_item = input("Input item: ")
+        create(input_item)
+
+    # Read item
+    elif function_code == "R":
+        item_index = input("Index Number? ")
+
+        # Remember that item_index must actually exist or our program will crash.
+        read(item_index)
+
+    # Print all items
+    elif function_code == "P":
+        list_all_items()
+
+    # Catch all
+    else:
+        print("Unknown Option")
 
 # Test Functions
 def test():
@@ -43,5 +66,9 @@ def test():
     print(read(0))
     list_all_items()
     mark_completed(0)
+    select("C")
+    select("P")
+    # select("R")
+    # select("P")
 
 test()
