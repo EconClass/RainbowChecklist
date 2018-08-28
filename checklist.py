@@ -31,6 +31,12 @@ def mark_completed(index):
     mark_item = checklist[index]
     print(str('√') + "{}".format(mark_item))
 
+# Unmark Item
+def unmark(index):
+    if "√" in checklist{index}:
+        unmarked = checklist[index]
+        return unmarked[1:]
+
 # Select functions to run
 def select(function_code):
     # Create item
@@ -44,10 +50,31 @@ def select(function_code):
         # Remember that item_index must actually exist or our program will crash.
         print(read(item_index))
 
+    # Update Items
+    elif function_code == "U":
+        item_index = input("Index Number? ")
+        replacement = raw_input( "Replace with: ")
+        update(item_index, replacement)
+
+    # Destroy Items
+    elif function_code == "D":
+        item_index = input("Index Number? ")
+        destroy(item_index)
+
     # Print all items
     elif function_code == "P":
         list_all_items()
 
+    # Mark Item
+    elif function_code == "M":
+        checklist_index = input("Index Number? ")
+        mark_completed(checklist_index)
+
+    # Unmark Items
+    elif function_code == "X":
+        checklist_index = input("Index Number? ")
+        unmark(checklist_index)
+        
     # Stop the loop
     elif function_code == "Q":
         return False
@@ -80,7 +107,7 @@ def test():
     list_all_items()
     select("R")
     select("P")
-    # select("Q")
+    select("Q")
     clear_terminal()
 
 # Clear Terminal
@@ -95,5 +122,7 @@ def clear_terminal():
 running = True
 while running:
     selection = user_input(
-        "Press C to add to list, R to Read from list, P to display list, and Q to quit: ")
-    running = select(selection)
+        """Press C to add to list, R to Read from list,
+        U to update list, D to destroy list, M to mark complete,
+        X to unmark item, P to display list, and Q to quit: """)
+    running = select(selection.upper())
