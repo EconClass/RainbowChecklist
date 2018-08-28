@@ -47,18 +47,21 @@ def select(function_code):
     # Read item
     elif function_code == "R":
         item_index = input("Index Number? ")
+        check_index(item_index)
         # Remember that item_index must actually exist or our program will crash.
         print(read(item_index))
 
     # Update Items
     elif function_code == "U":
         item_index = input("Index Number? ")
+        check_index(item_index)
         replacement = raw_input( "Replace with: ")
         update(item_index, replacement)
 
     # Destroy Items
     elif function_code == "D":
         item_index = input("Index Number? ")
+        check_index(item_index)
         destroy(item_index)
 
     # Print all items
@@ -67,12 +70,14 @@ def select(function_code):
 
     # Mark Item
     elif function_code == "M":
-        checklist_index = input("Index Number? ")
+        item_index = input("Index Number? ")
+        check_index(item_index)
         mark_completed(checklist_index)
 
     # Unmark Items
     elif function_code == "X":
-        checklist_index = input("Index Number? ")
+        item_index = input("Index Number? ")
+        check_index(item_index)
         unmark(checklist_index)
 
     # Stop the loop
@@ -84,6 +89,14 @@ def select(function_code):
         print("Unknown Option")
 
     return True
+
+# Check for valid inputs
+def check_index(input):
+    if input >= 0 and input < len(checklist):
+        return True
+    else:
+        print("Index not in range.")
+
 
 # Prompt a user input
 def user_input(prompt):
@@ -122,7 +135,7 @@ def clear_terminal():
 running = True
 while running:
     selection = user_input(
-        """Press C to add to list, R to Read from list,
+        """     Press C to add to list, R to Read from list,
         U to update list, D to destroy list, M to mark complete,
         X to unmark item, P to display list, and Q to quit: """)
     running = select(selection.upper())
