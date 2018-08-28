@@ -1,5 +1,5 @@
-# Initial Conditions
 # -*- coding: utf-8 -*-
+# Initial Conditions
 checklist = list()
 # checklist.append("Hello")
 # checklist.append("World")
@@ -37,13 +37,12 @@ def mark_completed(index):
 def select(function_code):
     # Create item
     if function_code == "C":
-        input_item = input("Input item: ")
+        input_item = user_input("Input item: ")
         create(input_item)
 
     # Read item
     elif function_code == "R":
         item_index = input("Index Number? ")
-
         # Remember that item_index must actually exist or our program will crash.
         read(item_index)
 
@@ -54,6 +53,13 @@ def select(function_code):
     # Catch all
     else:
         print("Unknown Option")
+
+# Prompt a user input
+def user_input(prompt):
+    # the input function will display a message in the terminal
+    # and wait for user input.
+    user_input = raw_input(prompt)
+    return user_input
 
 # Test Functions
 def test():
@@ -66,9 +72,10 @@ def test():
     print(read(0))
     list_all_items()
     mark_completed(0)
-    select("C")
-    select("P")
+    # select("C")
+    # list_all_items()
     # select("R")
     # select("P")
+    select("X")
 
 test()
