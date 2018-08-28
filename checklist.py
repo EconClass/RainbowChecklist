@@ -23,7 +23,7 @@ def destroy(index):
 def list_all_items():
     index = 0
     for list_item in checklist:
-        print(str(index) + str(list_item))
+        print(str(index) + " " + str(list_item))
         index += 1
 
 # Put a check on completed items in the list
@@ -33,7 +33,7 @@ def mark_completed(index):
 
 # Unmark Item
 def unmark(index):
-    if "√" in checklist{index}:
+    if "√" in checklist[index]:
         unmarked = checklist[index]
         return unmarked[1:]
 
@@ -74,7 +74,7 @@ def select(function_code):
     elif function_code == "X":
         checklist_index = input("Index Number? ")
         unmark(checklist_index)
-        
+
     # Stop the loop
     elif function_code == "Q":
         return False
