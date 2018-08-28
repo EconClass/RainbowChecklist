@@ -29,7 +29,8 @@ def list_all_items():
 
 # Put a check on completed items in the list
 def mark_completed(index):
-    print(str(√) "{}".format(str(index)))
+    mark_item = checklist[index]
+    # print(str('√') + "{}".format(, mark_item))
 
 # Test Functions
 def test():
