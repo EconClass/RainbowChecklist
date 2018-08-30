@@ -2,42 +2,42 @@
 # Initial Conditions
 checklist = list()
 
-# Create Items
+# Create function to Create Items
 def create(item):
     checklist.append(item)
 
-# Read Items
+# Create function to Read Items
 def read(index):
     item = checklist[index]
     return item;
 
-# Update Items
+# Create function to Update Items
 def update(index, item):
     checklist[index] = item
 
-# Destroy Items
+# Create function to Destroy Items
 def destroy(index):
     checklist.pop(index)
 
-# List Items
+# Create function to List Items
 def list_all_items():
     index = 0
     for list_item in checklist:
         print(str(index) + " " + str(list_item))
         index += 1
 
-# Put a check on completed items in the list
+# Create function to put a check on completed items in the list
 def mark_completed(index):
     mark_item = checklist[index]
     print(str('√') + "{}".format(mark_item))
 
-# Unmark Item
+# Create function to Unmark Item
 def unmark(index):
     if "√" in checklist[index]:
         unmarked = checklist[index]
         return unmarked[1:]
 
-# Select functions to run
+# Create function to Select functions to run
 def select(function_code):
     # Create item
     if function_code == "C":
@@ -48,6 +48,7 @@ def select(function_code):
     elif function_code == "R":
         item_index = input("Index Number? ")
         check_index(item_index)
+        clear_terminal()
         # Remember that item_index must actually exist or our program will crash.
         print(read(item_index))
 
@@ -92,10 +93,18 @@ def select(function_code):
 
 # Check for valid inputs
 def check_index(input):
-    if input >= 0 and input < len(checklist):
+    try:
+        integer = int(input)
+        # if input >= 0 and input < len(checklist):
+        #     return True
+        # else:
+        #     print("Index not in range.")
+        #     break
         return True
-    else:
-        print("Index not in range.")
+    except ValueError:
+        clear_terminal()
+        print("Not an integer.")
+        return False
 
 
 # Prompt a user input
@@ -138,4 +147,5 @@ while running:
         """     Press C to add to list, R to Read from list,
         U to update list, D to destroy list, M to mark complete,
         X to unmark item, P to display list, and Q to quit: """)
+    clear_terminal()
     running = select(selection.upper())
